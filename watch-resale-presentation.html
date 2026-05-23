@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revenda de Relógios Premium — Plano de Negócios</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f172a;
+      --bg2: #1e293b;
+      --bg3: #334155;
+      --card: #1e293b;
+      --card2: #0f172a;
+      --border: #334155;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --gold: #f59e0b;
+      --gold-light: #fcd34d;
+      --green: #22c55e;
+      --blue: #3b82f6;
+      --purple: #a855f7;
+      --pink: #ec4899;
+      --orange: #f97316;
+      --red: #ef4444;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      border: 1px solid #1d4ed8;
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '⌚';
+      position: absolute;
+      top: -10px;
+      right: 2rem;
+      font-size: 9rem;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.4);
+      color: var(--gold);
+      font-weight: 800;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(90deg, #fff, #fcd34d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: #cbd5e1;
+      max-width: 620px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      border: 1px solid;
+      border-radius: 50px;
+      padding: 4px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .tag-gold  { border-color: rgba(245,158,11,0.5);  color: #fcd34d; }
+    .tag-green { border-color: rgba(34,197,94,0.5);   color: #86efac; }
+    .tag-blue  { border-color: rgba(59,130,246,0.5);  color: #93c5fd; }
+    .tag-purple{ border-color: rgba(168,85,247,0.5);  color: #d8b4fe; }
+
+    /* ── METRICS GRID ── */
+    .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    @media(min-width:600px){ .metrics-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .metric-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.2rem;
+    }
+    .metric-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .metric-value { font-size: 1.5rem; font-weight: 900; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps { display: grid; gap: 1rem; }
+    @media(min-width:600px){ .steps { grid-template-columns: repeat(3,1fr); } }
+    .step {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .step-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+    .step h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── TABLE ── */
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { border-bottom: 2px solid var(--border); }
+    th {
+      text-align: left;
+      padding: 0.8rem 1rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    tbody tr { border-bottom: 1px solid rgba(51,65,85,0.5); }
+    tbody tr:hover { background: rgba(255,255,255,0.03); }
+    td { padding: 0.85rem 1rem; font-size: 0.9rem; }
+    .badge {
+      display: inline-block;
+      border-radius: 50px;
+      padding: 2px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .badge-green  { background: rgba(34,197,94,0.15);  color: #86efac; }
+    .badge-red    { background: rgba(239,68,68,0.15);  color: #fca5a5; }
+    .badge-amber  { background: rgba(245,158,11,0.15); color: #fcd34d; }
+    .badge-blue   { background: rgba(59,130,246,0.15); color: #93c5fd; }
+
+    /* ── CHANNELS ── */
+    .channels-grid { display: grid; gap: 1rem; }
+    @media(min-width:600px){ .channels-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(min-width:900px){ .channels-grid { grid-template-columns: repeat(3,1fr); } }
+
+    .channel-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      transition: border-color .2s;
+    }
+    .channel-card:hover { border-color: var(--muted); }
+    .channel-header { display: flex; align-items: center; gap: 12px; margin-bottom: 0.9rem; }
+    .channel-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .channel-card h3 { font-size: 0.95rem; font-weight: 800; }
+    .channel-card p  { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.8rem; }
+    .channel-tips { list-style: none; }
+    .channel-tips li {
+      font-size: 0.82rem;
+      padding: 3px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .channel-tips li::before {
+      content: '›';
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 0px;
+    }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0.8rem 0; }
+
+    /* ── RAFFLE ── */
+    .raffle-card {
+      background: linear-gradient(135deg, rgba(168,85,247,0.08), rgba(59,130,246,0.05));
+      border: 1px solid rgba(168,85,247,0.3);
+      border-radius: 16px;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    .raffle-grid { display: grid; gap: 1rem; margin-top: 1.2rem; }
+    @media(min-width:600px){ .raffle-grid { grid-template-columns: repeat(3,1fr); } }
+    .raffle-box {
+      background: rgba(15,23,42,0.7);
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 12px;
+      padding: 1.2rem;
+    }
+    .raffle-box h4 { font-size: 0.85rem; font-weight: 800; color: #c4b5fd; margin-bottom: 0.7rem; }
+    .raffle-box li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 3px 0;
+      list-style: none;
+    }
+
+    /* ── ROADMAP ── */
+    .roadmap-grid { display: grid; gap: 1rem; }
+    @media(min-width:600px){ .roadmap-grid { grid-template-columns: repeat(3,1fr); } }
+    .phase-card {
+      border-radius: 14px;
+      padding: 1.4rem;
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-left-width: 4px;
+    }
+    .phase-header { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+    .phase-badge {
+      display: inline-block;
+      border-radius: 50px;
+      padding: 2px 12px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .phase-title { font-size: 0.9rem; font-weight: 800; }
+    .phase-list { list-style: none; }
+    .phase-list li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 4px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .phase-list li::before {
+      content: '●';
+      font-size: 0.4rem;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+
+    /* ── TIPS ── */
+    .tips-grid { display: grid; gap: 0.75rem; }
+    @media(min-width:600px){ .tips-grid { grid-template-columns: repeat(2,1fr); } }
+    .tip-item {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+    .tip-star { color: var(--gold); flex-shrink: 0; font-size: 0.9rem; }
+
+    /* ── CTA ── */
+    .cta {
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .cta-icon { font-size: 3.5rem; margin-bottom: 1rem; display: block; }
+    .cta h2 { font-size: 2rem; font-weight: 900; margin-bottom: 0.6rem; }
+    .cta p { color: var(--muted); max-width: 520px; margin: 0 auto 1.5rem; }
+    .cta-steps { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+    .cta-step {
+      background: var(--gold);
+      color: #0f172a;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 8px 18px;
+      border-radius: 50px;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: #fff; color: #000; }
+      .hero, .raffle-card, .cta { background: #f8fafc !important; color: #000; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">⌚ Plano de Negócios</div>
+    <h1>Revenda de Relógios Premium</h1>
+    <p>Compra estratégica e revenda lucrativa de relógios de R$&nbsp;1.000 a R$&nbsp;10.000 — via grupos, Instagram, anúncios e sorteios.</p>
+    <div class="hero-tags">
+      <span class="tag tag-gold">Baixo Capital Inicial</span>
+      <span class="tag tag-green">Alta Margem (30–40%)</span>
+      <span class="tag tag-blue">Mercado em Crescimento</span>
+      <span class="tag tag-purple">Potencial de Escala</span>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">💰 Capital Inicial Sugerido</div>
+      <div class="metric-value" style="color:var(--green)">R$&nbsp;5.000</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">⌚ Giro Estimado/Mês</div>
+      <div class="metric-value" style="color:var(--blue)">3&nbsp;–&nbsp;6 relógios</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">📈 Margem Média</div>
+      <div class="metric-value" style="color:var(--green)">30&nbsp;–&nbsp;40%</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">💵 Lucro Mensal Estimado</div>
+      <div class="metric-value" style="color:var(--purple)">R$&nbsp;1.500&nbsp;–&nbsp;4.000</div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="card">
+    <div class="card-title">🎯 Como Funciona o Modelo</div>
+    <div class="steps">
+      <div class="step">
+        <span class="step-icon">📦</span>
+        <h3>1. Comprar Barato</h3>
+        <p>Buscar relógios seminovos em OLX, Facebook Marketplace, leilões e pessoas precisando vender rápido — sempre abaixo do valor de mercado.</p>
+      </div>
+      <div class="step">
+        <span class="step-icon">✨</span>
+        <h3>2. Preparar &amp; Documentar</h3>
+        <p>Limpeza e revisão básica, fotos profissionais, pesquisa de certificado de autenticidade e histórico do relógio.</p>
+      </div>
+      <div class="step">
+        <span class="step-icon">📈</span>
+        <h3>3. Vender pelo Preço Justo</h3>
+        <p>Anunciar nos canais certos com preço de mercado, garantindo margem de 30–40% sobre o valor pago na aquisição.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BRANDS TABLE -->
+  <div class="card">
+    <div class="card-title">🏆 Marcas-Alvo e Faixas de Preço</div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Marca</th>
+            <th>Faixa de Revenda</th>
+            <th>Margem Estimada</th>
+            <th>Prioridade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Rolex</strong></td>
+            <td style="color:var(--muted)">R$&nbsp;8.000 – R$&nbsp;10.000</td>
+            <td><span class="badge badge-green">~40%</span></td>
+            <td><span class="badge badge-red">Alta</span></td>
+          </tr>
+          <tr>
+            <td><strong>Omega</strong></td>
+            <td style="color:var(--muted)">R$&nbsp;5.000 – R$&nbsp;8.000</td>
+            <td><span class="badge badge-green">~35%</span></td>
+            <td><span class="badge badge-red">Alta</span></td>
+          </tr>
+          <tr>
+            <td><strong>TAG Heuer</strong></td>
+            <td style="color:var(--muted)">R$&nbsp;3.000 – R$&nbsp;6.000</td>
+            <td><span class="badge badge-green">~35%</span></td>
+            <td><span class="badge badge-amber">Média</span></td>
+          </tr>
+          <tr>
+            <td><strong>Seiko Luxo</strong></td>
+            <td style="color:var(--muted)">R$&nbsp;1.500 – R$&nbsp;3.000</td>
+            <td><span class="badge badge-green">~30%</span></td>
+            <td><span class="badge badge-amber">Média</span></td>
+          </tr>
+          <tr>
+            <td><strong>Citizen Titanium</strong></td>
+            <td style="color:var(--muted)">R$&nbsp;1.000 – R$&nbsp;2.500</td>
+            <td><span class="badge badge-green">~28%</span></td>
+            <td><span class="badge badge-blue">Entrada</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mido / Tissot</strong></td>
+            <td style="color:var(--muted)">R$&nbsp;1.000 – R$&nbsp;3.000</td>
+            <td><span class="badge badge-green">~30%</span></td>
+            <td><span class="badge badge-blue">Entrada</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SALES CHANNELS -->
+  <div style="margin-bottom:2rem">
+    <div class="section-title">⚡ Canais de Venda</div>
+    <div class="channels-grid">
+
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-icon" style="background:rgba(249,115,22,0.15);color:var(--orange)">🛒</div>
+          <h3>Grupos OLX</h3>
+        </div>
+        <p>Anúncios com fotos profissionais e descrições detalhadas. Alto volume de compradores buscando relógios usados.</p>
+        <hr class="divider" />
+        <ul class="channel-tips" style="color:var(--muted)">
+          <li>Fotos com fundo branco/neutro</li>
+          <li>Descrição técnica completa</li>
+          <li>Preço competitivo com margem</li>
+          <li>Resposta rápida às mensagens</li>
+        </ul>
+      </div>
+
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-icon" style="background:rgba(34,197,94,0.15);color:var(--green)">💬</div>
+          <h3>Grupos WhatsApp &amp; Telegram</h3>
+        </div>
+        <p>Grupos especializados em relógios com compradores qualificados e decisão de compra rápida.</p>
+        <hr class="divider" />
+        <ul class="channel-tips" style="color:var(--muted)">
+          <li>Grupos de relógios premium</li>
+          <li>Grupos de colecionadores</li>
+          <li>Posts regulares com novidades</li>
+          <li>Construir reputação no grupo</li>
+        </ul>
+      </div>
+
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-icon" style="background:rgba(236,72,153,0.15);color:var(--pink)">📸</div>
+          <h3>Instagram</h3>
+        </div>
+        <p>Perfil profissional com feed curado. Reels mostrando detalhes dos relógios e stories de disponibilidade.</p>
+        <hr class="divider" />
+        <ul class="channel-tips" style="color:var(--muted)">
+          <li>Reels curtos e atrativos</li>
+          <li>Stories de novidades diárias</li>
+          <li>Hashtags do nicho de relógios</li>
+          <li>Link na bio para catálogo</li>
+        </ul>
+      </div>
+
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-icon" style="background:rgba(59,130,246,0.15);color:var(--blue)">🌐</div>
+          <h3>Anúncios Pagos (Meta Ads)</h3>
+        </div>
+        <p>Facebook + Instagram Ads para alcançar compradores qualificados além da rede orgânica.</p>
+        <hr class="divider" />
+        <ul class="channel-tips" style="color:var(--muted)">
+          <li>Segmentar por interesse em luxo</li>
+          <li>Remarketing para visitantes</li>
+          <li>Catálogo dinâmico de produtos</li>
+          <li>Budget sugerido: R$&nbsp;300–500/mês</li>
+        </ul>
+      </div>
+
+      <div class="channel-card">
+        <div class="channel-header">
+          <div class="channel-icon" style="background:rgba(168,85,247,0.15);color:var(--purple)">🤝</div>
+          <h3>Venda Direta</h3>
+        </div>
+        <p>Rede de relacionamentos, indicações e clientes recorrentes. Menor custo e maior confiança.</p>
+        <hr class="divider" />
+        <ul class="channel-tips" style="color:var(--muted)">
+          <li>Programa de indicação com bônus</li>
+          <li>Clientes VIP com preferência</li>
+          <li>Garantia e suporte pós-venda</li>
+          <li>Avaliações e depoimentos</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RAFFLE SYSTEM -->
+  <div class="raffle-card">
+    <div class="card-title" style="color:#d8b4fe">🎁 Sistema de Sorteios — Evolução do Negócio</div>
+    <p style="color:var(--muted);font-size:0.92rem">Após consolidar a operação de revenda, o sistema de sorteios amplifica o alcance e cria receita recorrente com alto engajamento.</p>
+    <div class="raffle-grid">
+      <div class="raffle-box">
+        <h4>Como Funciona</h4>
+        <ul>
+          <li>• Relógio de R$&nbsp;2.000–5.000 como prêmio</li>
+          <li>• Cotas numeradas a R$&nbsp;30–50 cada</li>
+          <li>• 100–200 cotas por sorteio</li>
+          <li>• Sorteio ao vivo via Instagram/YouTube</li>
+          <li>• Resultado via Loteria Federal</li>
+        </ul>
+      </div>
+      <div class="raffle-box">
+        <h4>Potencial de Receita</h4>
+        <ul>
+          <li>• 150 cotas × R$&nbsp;40 = R$&nbsp;6.000</li>
+          <li>• Custo do prêmio: ~R$&nbsp;3.500</li>
+          <li>• Lucro bruto: ~R$&nbsp;2.500/sorteio</li>
+          <li>• 2–4 sorteios/mês = R$&nbsp;5k–10k</li>
+          <li>• Cresce com a audiência</li>
+        </ul>
+      </div>
+      <div class="raffle-box">
+        <h4>Compliance</h4>
+        <ul>
+          <li>• Verificar regulamentação SECAP</li>
+          <li>• Transparência total nas regras</li>
+          <li>• Transmissão ao vivo do sorteio</li>
+          <li>• Comprovante público do resultado</li>
+          <li>• Entrega documentada com foto</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROADMAP -->
+  <div style="margin-bottom:2rem">
+    <div class="section-title">📊 Roadmap de Crescimento</div>
+    <div class="roadmap-grid">
+      <div class="phase-card" style="border-left-color:var(--blue)">
+        <div class="phase-header">
+          <span class="phase-badge" style="background:var(--blue)">Fase 1</span>
+          <span class="phase-title">Lançamento (Mês 1–2)</span>
+        </div>
+        <ul class="phase-list">
+          <li>Criar perfil Instagram profissional</li>
+          <li>Entrar em 5–10 grupos de relógios</li>
+          <li>Comprar primeiros 2–3 relógios para estoque</li>
+          <li>Criar anúncios no OLX e Mercado Livre</li>
+          <li>Documentar cada compra e venda</li>
+        </ul>
+      </div>
+      <div class="phase-card" style="border-left-color:var(--orange)">
+        <div class="phase-header">
+          <span class="phase-badge" style="background:var(--orange)">Fase 2</span>
+          <span class="phase-title">Escala (Mês 3–5)</span>
+        </div>
+        <ul class="phase-list">
+          <li>Investir em Meta Ads (R$&nbsp;300/mês)</li>
+          <li>Criar catálogo digital (Notion ou site)</li>
+          <li>Programa de indicação para clientes</li>
+          <li>Parcerias com relojoeiros e assistências</li>
+          <li>Ampliar variedade de marcas</li>
+        </ul>
+      </div>
+      <div class="phase-card" style="border-left-color:var(--purple)">
+        <div class="phase-header">
+          <span class="phase-badge" style="background:var(--purple)">Fase 3</span>
+          <span class="phase-title">Sorteios (Mês 6+)</span>
+        </div>
+        <ul class="phase-list">
+          <li>Lançar sistema de sorteios de relógios</li>
+          <li>Cotas a partir de R$&nbsp;30–50 por número</li>
+          <li>Premiação: relógio de R$&nbsp;2.000–5.000</li>
+          <li>Regulamentação e transparência total</li>
+          <li>Transmissão ao vivo do sorteio</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIPS -->
+  <div class="card">
+    <div class="card-title">⭐ Dicas de Ouro para o Sucesso</div>
+    <div class="tips-grid">
+      <div class="tip-item"><span class="tip-star">★</span> Sempre verifique a autenticidade antes de comprar — use relojoeiros de confiança.</div>
+      <div class="tip-item"><span class="tip-star">★</span> Documente tudo: fotos antes/depois, recibos e conversas de negociação.</div>
+      <div class="tip-item"><span class="tip-star">★</span> Construa reputação: avaliações no OLX e depoimentos no Instagram valem ouro.</div>
+      <div class="tip-item"><span class="tip-star">★</span> Mantenha capital de giro: nunca invista mais de 70% do caixa em estoque.</div>
+      <div class="tip-item"><span class="tip-star">★</span> Aprenda sobre as marcas: conhecimento é poder de negociação na compra.</div>
+      <div class="tip-item"><span class="tip-star">★</span> Rede de contatos: relojoeiros, assistências e colecionadores são aliados.</div>
+      <div class="tip-item"><span class="tip-star">★</span> Fotos fazem a diferença: invista em boa câmera e fundo neutro.</div>
+      <div class="tip-item"><span class="tip-star">★</span> Preço justo > preço alto: giro rápido é melhor que esperar margem máxima.</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <span class="cta-icon">⌚</span>
+    <h2>Pronto para Começar?</h2>
+    <p>Com R$&nbsp;5.000 de capital inicial, consistência e boa estratégia de compra, é possível construir uma renda sólida no mercado de relógios premium em menos de 6 meses.</p>
+    <div class="cta-steps">
+      <span class="cta-step">Passo 1 — Pesquisar preços de mercado</span>
+      <span class="cta-step">Passo 2 — Criar perfil Instagram</span>
+      <span class="cta-step">Passo 3 — Fazer primeira compra</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
